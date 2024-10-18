@@ -64,7 +64,7 @@ namespace BookOwner.Controllers
                     }
                     else
                     {
-                        return View("Index2");
+                        return View("Error");
                     }
                 }
             }
@@ -130,7 +130,7 @@ namespace BookOwner.Controllers
                     }
                     else
                     {
-                        return View("Index2");
+                        return View("Error");
                     }
                     //returning the employee list to view  
                 }
@@ -183,7 +183,7 @@ namespace BookOwner.Controllers
                     }
                     else
                     {
-                        return View("Index2");
+                        return View("Error");
                     }
                     //returning the employee list to view  
                 }
