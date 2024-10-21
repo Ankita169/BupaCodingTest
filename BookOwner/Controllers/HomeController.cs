@@ -132,7 +132,6 @@ namespace BookOwner.Controllers
                     {
                         return View("Error");
                     }
-                    //returning the employee list to view  
                 }
             }
             catch (HttpRequestException)
