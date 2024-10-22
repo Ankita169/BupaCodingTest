@@ -1,3 +1,4 @@
+C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\obj\Debug\BookOwnerTest.csproj.CoreCompileInputs.cache
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\bin\Debug\NUnit3.TestAdapter.dll
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\bin\Debug\NUnit3.TestAdapter.pdb
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\bin\Debug\nunit.engine.dll
@@ -60,7 +61,6 @@ C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\bin\Debug\Syst
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\bin\Debug\Newtonsoft.Json.xml
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\bin\Debug\System.Net.Http.Formatting.xml
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\obj\Debug\BookOwnerTest.csproj.AssemblyReference.cache
-C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\obj\Debug\BookOwnerTest.csproj.CoreCompileInputs.cache
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\obj\Debug\BookOwnerTest.csproj.CopyComplete
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\obj\Debug\BookOwnerTest.dll
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\obj\Debug\BookOwnerTest.pdb
