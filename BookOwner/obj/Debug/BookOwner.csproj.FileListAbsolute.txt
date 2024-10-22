@@ -78,8 +78,8 @@ C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwner\bin\System.Net.Htt
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwner\bin\System.Web.Http.xml
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwner\bin\System.Web.Http.WebHost.xml
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwner\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwner\obj\Debug\BookOwner.csproj.AssemblyReference.cache
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwner\obj\Debug\BookOwner.csproj.CoreCompileInputs.cache
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwner\obj\Debug\BookOwner.csproj.CopyComplete
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwner\obj\Debug\BookOwner.dll
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwner\obj\Debug\BookOwner.pdb
+C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwner\obj\Debug\BookOwner.csproj.AssemblyReference.cache

@@ -1,4 +1,4 @@
-﻿@model BookOwner.Models.Owner
+﻿    @model BookOwner.Models.Owner
 
 @*@{
         ViewBag.Title = "www.compilemode.com";
@@ -49,14 +49,17 @@
                                     Books Owned by Adult
                                 </th>
                             </tr>
-                            @if (Model?.OwnerAdult != null)
+                            @if (ViewBag.Adults != null)
                             {
-                                foreach (var book in Model.OwnerAdult)
+                                foreach (var owner in ViewBag.Adults)
                                 {
                                     <tr>
                                         <td>
-
-                                            @Html.DisplayFor(modelItem => book.Name)
+                                            @foreach(var book in owner.books)
+                                             {
+                                                
+                                                @book.name
+                                             }
 
                                         </td>
                                     </tr>
@@ -82,14 +85,18 @@
                                 </th>
 
                             </tr>
-                            @if (Model?.OwnerAdult != null)
+                            @if (ViewBag.child != null)
                             {
-                                foreach (var book in Model.OwnerChild)
+                                foreach (var owner in ViewBag.child)
                                 {
                                     <tr>
                                         <td>
 
-                                            @Html.DisplayFor(modelItem => book.Name)
+                                            @foreach (var book in owner.books)
+                                            {
+
+                                                @book.name
+                                            }
 
                                         </td>
                                     </tr>

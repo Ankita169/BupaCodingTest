@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System.Net.Http;
 using BookOwner.Models;
+ 
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,13 +17,11 @@ namespace BookOwner.Controllers
     {
         string Baseurl = "https://digitalcodingtest.bupa.com.au/api/v1/bookowners";
 
-
-
         public async Task<ActionResult> Book()
         {
-            List<book> BookInfo = new List<book>();
             try
             {
+                List<book> BookInfo = new List<book>();
                 using (var client = new HttpClient())
                 {
                     //Passing service base url  
@@ -36,40 +35,50 @@ namespace BookOwner.Controllers
                     HttpResponseMessage Res = await client.GetAsync("/api/v1/bookowners");
 
                     //Checking the response is successful or not which is sent using HttpClient  
+
                     if (Res.IsSuccessStatusCode)
                     {
                         //Storing the response details recieved from web api   
                         var OwnerResponse = await Res.Content.ReadAsStringAsync();
-                        var owners = JsonConvert.DeserializeObject<List<Owner>>(OwnerResponse);
-                        if (owners != null)
+                        //var owners = JsonConvert.DeserializeObject<List<Owner>>(OwnerResponse);
+                        dynamic data = JsonConvert.DeserializeObject<dynamic>(OwnerResponse);
+                        if (data != null)
                         {
+                            var adults = new List<dynamic>();
+                            var child = new List<dynamic>();
 
-                            var ownersadult = owners.Where(adult => adult.Age >= 18);
-                            var ownerschild = owners.Where(child => child.Age < 18);
-                            var Adultbook = ownersadult.SelectMany(a => a.Books).OrderBy(ba => ba.Name).ToList();
-                            var Childbook = ownerschild.SelectMany(c => c.Books).OrderBy(bc => bc.Name).ToList();
-                            var bookowner = new Owner
+                            foreach (var items in data)
                             {
-                                OwnerAdult = Adultbook,
-                                OwnerChild = Childbook
-                            };
-                            //Deserializing the response recieved from web api and storing into the Employee list  
-                            return View(bookowner);
+                                if (items.age > 18)
+                                {
+                                    adults.Add(items);
+                                }
+                                else
+                                {
+                                    child.Add(items);
+                                }
+                            }
+                            ViewBag.Adults = adults;
+                            ViewBag.child = child;
+                            return View();
                         }
                         else
                         {
-                            ModelState.AddModelError("", "There was a problem connection to the API");
-                            return View("Error");
+                            ViewBag.Error = "Content not loading from the api";
+                            return View("Error","Api Value not Loaded");
+
                         }
+                        
                     }
                     else
                     {
-                        return View("Index2");
+                        ViewBag.Error = "Error retrieving the book owner from the api";
+                        return View("Error","Api Data Not Load");
+
                     }
+
                 }
             }
-            //returning the employee list to view  
-
 
             catch (HttpRequestException)
             {
@@ -78,13 +87,12 @@ namespace BookOwner.Controllers
             }
         }
 
-        public ActionResult Index2()
+        
+        public async Task<ActionResult> Error()
         {
+            ViewBag.Message = "Error";
             return View();
-        }
-        public ActionResult Error()
-        {
-            return View();
+
         }
         public async Task<ActionResult> AllBooks()
         {
@@ -123,14 +131,13 @@ namespace BookOwner.Controllers
                                 .Where(owner => owner.Books != null)
                                 .SelectMany(listbooks => listbooks.Books)
                                 .OrderBy(bookssort => bookssort.Name).ToList();
-
-                            //Deserializing the response recieved from web api and storing into the Employee list  
+                            ViewBag.Message = "AllBooks";
                             return View(Allbooks);
                         }
                     }
                     else
                     {
-                        return View("Index2");
+                        return View("Error");
                     }
                     //returning the employee list to view  
                 }
@@ -171,6 +178,7 @@ namespace BookOwner.Controllers
                             var HardCover = owners.Where(owner => owner != null)
                            .SelectMany(ownercover => ownercover.Books).Where(type => type.Type == "Hardcover").OrderBy(cover => cover.Name).ToList();
 
+                            ViewBag.Message = "HardCoverBooksOnly";
                             //Deserializing the response recieved from web api and storing into the Employee list  
                             return View(HardCover);
                         }
@@ -183,7 +191,7 @@ namespace BookOwner.Controllers
                     }
                     else
                     {
-                        return View("Index2");
+                        return View("Error");
                     }
                     //returning the employee list to view  
                 }
