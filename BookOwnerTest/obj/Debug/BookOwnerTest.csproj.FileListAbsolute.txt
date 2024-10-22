@@ -17,6 +17,7 @@ C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\bin\Debug\Micr
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\bin\Debug\Microsoft.Web.Infrastructure.dll
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\bin\Debug\Moq.dll
+C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\bin\Debug\Newtonsoft.Json.dll
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\bin\Debug\nunit.framework.dll
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\bin\Debug\nunit.framework.legacy.dll
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\bin\Debug\System.Buffers.dll
@@ -34,13 +35,13 @@ C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\bin\Debug\Syst
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\bin\Debug\System.Web.Optimization.dll
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\bin\Debug\System.Web.Http.dll
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\bin\Debug\System.Web.Http.WebHost.dll
-C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\bin\Debug\Newtonsoft.Json.dll
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\bin\Debug\System.Net.Http.Formatting.dll
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\bin\Debug\BookOwner.pdb
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\bin\Debug\BookOwner.dll.config
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\bin\Debug\Castle.Core.xml
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\bin\Debug\Newtonsoft.Json.xml
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\bin\Debug\nunit.framework.xml
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\bin\Debug\nunit.framework.legacy.xml
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\bin\Debug\System.Buffers.xml
@@ -58,7 +59,6 @@ C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\bin\Debug\Syst
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\bin\Debug\System.Web.Optimization.xml
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\bin\Debug\System.Web.Http.xml
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\bin\Debug\System.Web.Http.WebHost.xml
-C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\bin\Debug\Newtonsoft.Json.xml
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\bin\Debug\System.Net.Http.Formatting.xml
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\obj\Debug\BookOwnerTest.csproj.AssemblyReference.cache
 C:\Users\ankita.srivastava06\source\repos\BookOwner\BookOwnerTest\obj\Debug\BookOwnerTest.csproj.CopyComplete
