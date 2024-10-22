@@ -27,37 +27,23 @@ namespace BookOwnerTest
 
             var expectedOwner = new Owner
             {
-                //Name="Ankita",
-                //Age= 23,
                 OwnerAdult = new List<book>
-
                 { 
-
                 new book { Name = "Book 1",Type="Hardcover" },
                 new book { Name = "Book 2", Type="PaperCover"},
                 new book { Name = "Book 3",Type="Hardcover" },
                 new book { Name = "Book 4", Type="PaperCover"},
                 new book { Name = "Book 5",Type="Hardcover" },
                 new book { Name = "Book 6", Type="PaperCover"},
-
                 },
                 OwnerChild = new List<book>
-
                 {
-
                 new book { Name = "Book 7",Type="Hardcover"},
-
                 new book { Name = "Book 8" ,Type="PaperCover"},
-
                 new book { Name = "Book 9" ,Type="PaperCover"},
-
                 new book { Name = "Book 9" ,Type="PaperCover"},
-
-
                 },
-                
-            };
-            
+            };   
             var result = await _homeController.Book() as ViewResult;
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(ViewResult));
@@ -70,8 +56,6 @@ namespace BookOwnerTest
                     foreach (var books in owner.books)
                     {
                         ActualAdult++;
-
-
                     }
                 }
                 foreach (var expoadult in expectedOwner.OwnerAdult)
@@ -80,28 +64,21 @@ namespace BookOwnerTest
                 }
                 var actualcollection = ActualAdult;
                 var expectedcollection = ExpectedAdult;
-
-
                 Assert.AreEqual(expectedcollection, actualcollection);
             }
             else
             {
                 Assert.Fail("Execution for " + NUnit.Framework.TestContext.Error + " is aborted as the  test case value not available.");
-
             }
             int ActualChild = 0;
             int ExpectedChild = 0;
-
             if (result.ViewBag.child != null)
             {
-
                 foreach (var owner in result.ViewBag.child)
                 {
                     foreach (var books in owner.books)
                     {
                         ActualChild++;
-
-
                     }
                 }
                 foreach (var expoadult in expectedOwner.OwnerChild)
@@ -110,8 +87,6 @@ namespace BookOwnerTest
                 }
                 var actualchildcollection = ActualChild;
                 var expectedchildcollection = ExpectedChild;
-
-
                 Assert.AreEqual(expectedchildcollection, actualchildcollection);
             }
             else
@@ -119,17 +94,13 @@ namespace BookOwnerTest
                 Assert.Fail("Execution for " + NUnit.Framework.TestContext.Error + " is aborted as the  test case value not available.");
 
             }
-            //CollectionAssert.AreEqual(expectedOwner.OwnerChild, ((Owner)result.ViewBag).OwnerChild);
-
         }
 
         [Test]
         public async Task TesthomeControllerError()
         {
             var expectedViewName = "Error";
-
             var result = await _homeController.Error() as ViewResult;
-
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(ViewResult));
             Assert.AreEqual(expectedViewName, result.ViewBag.Message);
@@ -138,10 +109,7 @@ namespace BookOwnerTest
         public async Task TesthomeControllerAllBooks()
         {
             var expectedViewName = "AllBooks";
-
-
             var result = await _homeController.AllBooks() as ViewResult;
-
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(ViewResult));
             Assert.AreEqual(expectedViewName, result.ViewBag.Message);
@@ -150,9 +118,7 @@ namespace BookOwnerTest
         public async Task TesthomeControllerHardCoverBooks()
         {
             var expectedViewName = "HardCoverBooksOnly";
-
             var result = await _homeController.HardCoverBooks() as ViewResult;
-
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(ViewResult));
             Assert.AreEqual(expectedViewName, result.ViewBag.Message);
