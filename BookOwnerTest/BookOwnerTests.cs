@@ -125,32 +125,33 @@ namespace BookOwnerTest
         {
             var expectedViewName = "Error";
 
-            var result =  _homeController.Error() as ViewResult;
+            var result = await _homeController.Error() as ViewResult;
 
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(ViewResult));
-            Assert.AreEqual(expectedViewName, result.ViewName);
+            Assert.AreEqual(expectedViewName, result.ViewBag.Message);
         }
-        public async Task TesthomeControllerAllBook()
+        [Test]
+        public async Task TesthomeControllerAllBooks()
         {
-            var expectedViewName = "AllBook";
+            var expectedViewName = "AllBooks";
 
-            var result = _homeController.Error() as ViewResult;
+            var result = await _homeController.AllBooks() as ViewResult;
 
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(ViewResult));
-            Assert.AreEqual(expectedViewName, result.ViewName);
+            Assert.AreEqual(expectedViewName, result.ViewBag.Message);
         }
-
+        [Test]
         public async Task TesthomeControllerHardCoverBooks()
         {
-            var expectedViewName = "HardCoverBooks";
+            var expectedViewName = "HardCoverBooksOnly";
 
-            var result = _homeController.Error() as ViewResult;
+            var result = await _homeController.HardCoverBooks() as ViewResult;
 
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(ViewResult));
-            Assert.AreEqual(expectedViewName, result.ViewName);
+            Assert.AreEqual(expectedViewName, result.ViewBag.Message);
         }
     }
 }
