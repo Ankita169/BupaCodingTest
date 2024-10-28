@@ -1,209 +1,79 @@
-﻿using System;
-using Newtonsoft.Json;
-using System.Net.Http;
-using BookOwner.Models;
- 
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
 using System.Threading.Tasks;
-using System.Net.Http.Headers;
-using System.Web.Http;
+using System.Web.Mvc;
+using BookOwner.Models;
 
 namespace BookOwner.Controllers
 {
     public class HomeController : Controller
     {
-        string Baseurl = "https://digitalcodingtest.bupa.com.au/api/v1/bookowners";
+        private readonly BookOwnerService _bookOwnerService;
 
+        public HomeController()
+        {
+            _bookOwnerService = new BookOwnerService();
+        }
+        // GET: BookOwner
         public async Task<ActionResult> Book()
         {
-            try
+
+            var bookOwners = await _bookOwnerService.GetBooksByCategory();
+            if (bookOwners == null||!bookOwners.Any())
             {
-                List<book> BookInfo = new List<book>();
-                using (var client = new HttpClient())
-                {
-                    //Passing service base url  
-                    client.BaseAddress = new Uri(Baseurl);
-
-                    client.DefaultRequestHeaders.Clear();
-                    //Define request data format  
-                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                    //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
-                    HttpResponseMessage Res = await client.GetAsync("/api/v1/bookowners");
-
-                    //Checking the response is successful or not which is sent using HttpClient  
-
-                    if (Res.IsSuccessStatusCode)
-                    {
-                        //Storing the response details recieved from web api   
-                        var OwnerResponse = await Res.Content.ReadAsStringAsync();
-                        //var owners = JsonConvert.DeserializeObject<List<Owner>>(OwnerResponse);
-                        dynamic data = JsonConvert.DeserializeObject<dynamic>(OwnerResponse);
-                        if (data != null)
-                        {
-                            var adults = new List<dynamic>();
-                            var child = new List<dynamic>();
-
-                            foreach (var items in data)
-                            {
-                                if (items.age > 18)
-                                {
-                                    adults.Add(items);
-                                }
-                                else
-                                {
-                                    child.Add(items);
-                                }
-                            }
-                            ViewBag.Adults = adults;
-                            ViewBag.child = child;
-                            return View();
-                        }
-                        else
-                        {
-                            ViewBag.Error = "Content not loading from the api";
-                            return View("Error","Api Value not Loaded");
-
-                        }
-                        
-                    }
-                    else
-                    {
-                        ViewBag.Error = "Error retrieving the book owner from the api";
-                        return View("Error","Api Data Not Load");
-
-                    }
-
-                }
-            }
-
-            catch (HttpRequestException)
-            {
-                ModelState.AddModelError("", "There was a problem connection to the API");
                 return View("Error");
+
             }
-        }
-
-        
-        public async Task<ActionResult> Error()
-        {
-            ViewBag.Message = "Error";
-            return View();
-
-        }
-        public async Task<ActionResult> AllBooks()
-        {
-            try
+            else
             {
-
-                List<book> BookInfo = new List<book>();
-
-                using (var client = new HttpClient())
+                // Categorize  by age and order by book
+                var adults = bookOwners.Where(adultBook => adultBook.Age >= 18 ).Select(adultsort=> { adultsort.Books = adultsort.Books.OrderBy(adulto => adulto.Name).ToList(); return adultsort; }).ToList();
+                var children = bookOwners.Where(childrenBook => childrenBook.Age < 18).Select(adultsort => { adultsort.Books = adultsort.Books.OrderBy(adulto => adulto.Name).ToList(); return adultsort; }).ToList();
+                // Pass data to the view
+                var viewModel = new BookOwnerViewModel
                 {
-                    //Passing service base url  
-                    client.BaseAddress = new Uri(Baseurl);
-
-                    client.DefaultRequestHeaders.Clear();
-                    //Define request data format  
-                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                    //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
-                    HttpResponseMessage Res = await client.GetAsync("/api/v1/bookowners");
-
-                    //Checking the response is successful or not which is sent using HttpClient  
-                    if (Res.IsSuccessStatusCode)
-                    {
-                        //Storing the response details recieved from web api   
-                        var bookOwner = await Res.Content.ReadAsStringAsync();
-                        var owners = JsonConvert.DeserializeObject<List<Owner>>(bookOwner);
-                        if (owners == null)
-                        {
-                            ModelState.AddModelError("", "There was a problem connection to the API");
-                            return View("Error");
-                        }
-                        else
-                        {
-
-                            var Allbooks = owners
-                                .Where(owner => owner.Books != null)
-                                .SelectMany(listbooks => listbooks.Books)
-                                .OrderBy(bookssort => bookssort.Name).ToList();
-                            ViewBag.Message = "AllBooks";
-                            return View(Allbooks);
-                        }
-                    }
-                    else
-                    {
-                        return View("Error");
-                    }
-                    //returning the employee list to view  
-                }
+                    Adults = adults,
+                    Children = children
+                };
+                return View(viewModel);
             }
-            catch (HttpRequestException)
-            {
-                ModelState.AddModelError("", "There was a problem connection to the API");
-                return View("Error");
-            }
+
         }
-
+        // Get : HardCoverOnly     
         public async Task<ActionResult> HardCoverBooks()
         {
-            try
+            var hardCoverBooks = await _bookOwnerService.GetBooksByCategory();
+            if (hardCoverBooks == null || !hardCoverBooks.Any())
             {
-                List<book> BookInfo = new List<book>();
-
-                using (var client = new HttpClient())
-                {
-                    //Passing service base url  
-                    client.BaseAddress = new Uri(Baseurl);
-
-                    client.DefaultRequestHeaders.Clear();
-                    //Define request data format  
-                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                    //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
-                    HttpResponseMessage Res = await client.GetAsync("/api/v1/bookowners");
-
-                    //Checking the response is successful or not which is sent using HttpClient  
-                    if (Res.IsSuccessStatusCode)
-                    {
-                        //Storing the response details recieved from web api   
-                        var bookOwner = await Res.Content.ReadAsStringAsync();
-                        var owners = JsonConvert.DeserializeObject<List<Owner>>(bookOwner);
-                        if (owners != null)
-                        {
-                            var HardCover = owners.Where(owner => owner != null)
-                           .SelectMany(ownercover => ownercover.Books).Where(type => type.Type == "Hardcover").OrderBy(cover => cover.Name).ToList();
-
-                            ViewBag.Message = "HardCoverBooksOnly";
-                            //Deserializing the response recieved from web api and storing into the Employee list  
-                            return View(HardCover);
-                        }
-                        else
-                        {
-                            ModelState.AddModelError("", "There was a problem connection to the API");
-                            return View("Error");
-                        }
-
-                    }
-                    else
-                    {
-                        return View("Error");
-                    }
-                    //returning the employee list to view  
-                }
+                return View("HardCoverBooks");
             }
-            catch (HttpRequestException)
+            else
             {
-                ModelState.AddModelError("", "There was a problem connection to the API");
-                return View("Error");
+
+                var HardCover = hardCoverBooks.Where(owner => owner != null)
+                .SelectMany(ownercover => ownercover.Books).Where(type => type.Type == "Hardcover").OrderBy(cover => cover.Name).ToList();
+                return View("HardCoverBooks", HardCover);
             }
         }
+        //Get All Books  owned by adult and child 
+        public async Task<ActionResult> AllBooks()
+        {
+            var AllBooks = await _bookOwnerService.GetBooksByCategory();
+            if (AllBooks == null || !AllBooks.Any())
+            {
+                return View("AllBooks");
+            }
+            else
+            {
+                var Allbook = AllBooks
+                           .Where(owner => owner.Books != null)
+                           .SelectMany(listbooks => listbooks.Books)
+                           .OrderBy(bookssort => bookssort.Name).ToList();
 
+                return View("AllBooks", Allbook);
+            }
 
+        }
 
     }
+
 }
