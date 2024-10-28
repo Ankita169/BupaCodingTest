@@ -1,9 +1,8 @@
-﻿    @model BookOwner.Models.Owner
+@model BookOwner.Models.BookOwnerViewModel
 
-@*@{
-        ViewBag.Title = "www.compilemode.com";
-    }*@
-
+@{
+    ViewBag.Title = "Index";
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -49,23 +48,7 @@
                                     Books Owned by Adult
                                 </th>
                             </tr>
-                            @if (ViewBag.Adults != null)
-                            {
-                                foreach (var owner in ViewBag.Adults)
-                                {
-                                    <tr>
-                                        <td>
-                                            @foreach(var book in owner.books)
-                                             {
-                                                
-                                                @book.name
-                                             }
-
-                                        </td>
-                                    </tr>
-                                }
-                            }
-                            else
+                            @if (Model.Adults == null)
                             {
                                 <tr>
                                     <td>
@@ -73,6 +56,23 @@
                                     </td>
                                 </tr>
                             }
+                            else
+                            {
+                                foreach (var adult in Model.Adults)
+                                {
+                                    <tr>
+                                        <td>
+                                            @foreach (var book in adult.Books)
+                                            {
+
+                                                @book.Name
+                                            }
+
+                                        </td>
+                                    </tr>
+                                }
+                            }
+
                         </table>
                     </center>
                 </div>
@@ -85,30 +85,31 @@
                                 </th>
 
                             </tr>
-                            @if (ViewBag.child != null)
+                            @if (Model.Children == null || Model.Children.Count == 0)
                             {
-                                foreach (var owner in ViewBag.child)
-                                {
-                                    <tr>
-                                        <td>
 
-                                            @foreach (var book in owner.books)
-                                            {
-
-                                                @book.name
-                                            }
-
-                                        </td>
-                                    </tr>
-                                }
-                            }
-                            else
-                            {
                                 <tr>
                                     <td>
                                         No Books Available
                                     </td>
                                 </tr>
+                            }
+                            else
+                            {
+                                foreach (var child in Model.Children)
+                                {
+                                    <tr>
+                                        <td>
+
+                                            @foreach (var book in child.Books)
+                                            {
+
+                                                @book.Name
+                                            }
+
+                                        </td>
+                                    </tr>
+                                }
                             }
                         </table>
                     </center>
